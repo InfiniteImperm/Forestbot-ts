@@ -1,0 +1,15 @@
+{
+    "welcomeMessages": true,
+    
+    
+    "reconnectTime": 30000,
+    
+    
+    "channelRefreshTime": 130000,
+    
+    
+    "viewerPort": "3002",
+    
+    
+    "afk": false
+}

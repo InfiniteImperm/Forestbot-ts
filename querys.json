@@ -1,0 +1,26 @@
+{
+    "quote":"SELECT name,message,date FROM messages WHERE name=? AND LENGTH(message) > 30 ORDER BY RAND() LIMIT 1",
+    "saveMessage": "INSERT INTO messages (name,message,date) VALUES (?,?,?)",
+    "checkUser": "SELECT username,uuid FROM users WHERE uuid=?",
+    "insertUser": "INSERT INTO users (username,kills,deaths,joindate,uuid) VALUES (?,?,?,?,?)",
+    "UpdateExistingUser": "UPDATE users SET username=? WHERE username=?",
+    "updateLeaves": "UPDATE users SET leaves = leaves + 1 , lastseen=? WHERE username=?",
+    "updateJoins": "UPDATE users SET joins = joins + 1, lastseen=? WHERE username=?",
+    "updatePlaytime": "UPDATE users SET playtime = playtime + 60000 WHERE username=?",
+    "updateKills": "UPDATE users SET kills = kills + 1 WHERE username=?",
+    "updateDeaths": "UPDATE users SET deaths = deaths + 1 WHERE username=?",
+    "lastSeen": "SELECT username, lastseen FROM users WHERE username=?",
+    "searchPlaytime": "SELECT username, playtime FROM users WHERE username=?",
+    "msgCount": "SELECT name, COUNT(name) AS cnt FROM messages WHERE NAME=? HAVING cnt > 1",
+    "searchKills": "SELECT username, kills, deaths FROM users WHERE username=?",
+    "searchJoindate": "SELECT username, joindate FROM users WHERE username=?",
+    "updateTabListBase64String": "UPDATE Misc SET tablist = ?",
+    
+    
+    "playtimeTop": "SELECT username, playtime FROM users ORDER BY playtime DESC LIMIT 4",
+    "topKills": "SELECT username, kills FROM users ORDER BY kills DESC LIMIT 5",
+    "topDeaths": "SELECT username, deaths FROM users ORDER BY deaths DESC LIMIT 5",
+    "topJoins": "SELECT username, joins FROM users ORDER BY joins DESC LIMIT 5",
+    "topLeaves": "SELECT username, leaves FROM users ORDER BY leaves DESC LIMIT 5"
+    }
+    
