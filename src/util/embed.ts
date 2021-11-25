@@ -1,9 +1,11 @@
 import { client, channels } from '../index.js';
-const Client:any = client;
-
 export default async function embed(text:string,color:string) {
 
-    if (!channels || channels.length <= 0 || !client || !text || !color) 
+    if (!client) return ("No client.")
+
+    const Client: any = client;
+
+    if (!channels || channels.length <= 0 || !text || !color) 
         return console.error("Missing Embed parameters.");
 
     try {

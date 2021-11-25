@@ -1,15 +1,16 @@
 {
     "welcomeMessages": true,
-    
-    
     "reconnectTime": 30000,
-    
-    
     "channelRefreshTime": 130000,
-    
-    
     "viewerPort": "3002",
-    
-    
-    "afk": false
+    "afk": false,
+
+    "purple":"#A100E1",
+    "pink":"#ff748c",
+    "grey":"#292b2c",
+    "green":"#5cb85c",
+    "red":"#d9534f",
+    "orange":"#ffa500"
+
+
 }

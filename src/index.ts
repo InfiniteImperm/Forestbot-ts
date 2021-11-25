@@ -10,18 +10,20 @@ import { Client, Intents } from 'discord.js';
 import playtime from './functions/TrackPlaytime.js';
 
 
-const Success = (text:string) => console.log('\x1b[32m%s\x1b[0m',`${text}`);
-const Fail = (text:string) => console.log('\x1b[31m%s\x1b[0m', `${text}`);
-
 let bot:any;
 let database:any = false;
 
-export let channels:string[] = [];
+export const Success = (text: string) => console.log('\x1b[32m%s\x1b[0m',`${text}`);
+export const Fail = (text: string) => console.error('\x1b[31m%s\x1b[0m', `${text}`);
+
+export let channels: string[] = [];
 export const client = new Client({intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES]});
+
+
 
 function loadChannels() {
     if(!database) return;
-    database.query(`SELECT * FROM livechats`, (err:any, res:any) => {
+    database.query(`SELECT * FROM livechats`, (err: any, res: any) => {
         if (err) return Fail("Error loading livechat channels."), console.error(err);
         channels = [];
         res.forEach((element:any) => {
@@ -35,11 +37,10 @@ function loadChannels() {
 };
 
 
-(async () => {
 
+(async () => {
     try {
 
-        
         /**
          * Checking to make sure the right 
          * config options are present.
@@ -68,9 +69,10 @@ function loadChannels() {
             client.login(env_options.DISCORD_TOKEN);
             
             client.once("ready", () => {
+                
                 Success("Discord bot successfully logged in.");
                 loadChannels();
-                setInterval(() => { loadChannels() }, bot_config.channelRefreshTime)
+                setInterval(() => { loadChannels() }, bot_config.channelRefreshTime);
             });
 
             client.on("messageCreate", (message:any) => {
@@ -108,9 +110,12 @@ function loadChannels() {
             /**
              * Loading custom chat patterns. and tablist.
              */
-
             patterns(bot);
 
+
+            /**
+             * Loading tablist creator and playtime counter.
+             */
             if (database) {
                 tab(bot,database,querys);
                 setInterval(() => { playtime(bot,database,querys) }, 60000);
@@ -121,13 +126,14 @@ function loadChannels() {
              * Handling Mineflayer Events.
              */
             const eventDir = (await readdir('./dist/events')).filter(file=>file.endsWith('.js'));
-            handleEvents(bot, eventDir, bot_config, database, querys);
-            
+            await handleEvents(bot, eventDir, bot_config, database, querys);
+            Success("Events active.")
 
             /**
              * Loading commands.
              */
             await loadCommands(bot, database, querys);
+            Success("Commands loaded.")
 
         };
 
@@ -141,3 +147,6 @@ function loadChannels() {
 
 
 })();
+/**
+ * Starting startup function
+ */

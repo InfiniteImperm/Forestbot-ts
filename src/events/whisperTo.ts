@@ -7,7 +7,7 @@ export default {
         const user = content[0][0];
         const message = content[0][1];
         
-        return embed(`${user} » ${message}`, '#ff748c');
+        return embed(`${user} » ${message}`, `${bot_options.pink}`);
 
     }
 }
