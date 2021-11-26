@@ -1,25 +1,11 @@
 import { RowDataPacketPlaytime } from "../../Types";
+import { dhms } from "../util/time.js";
 
 export default {
     commands: ['playtime', 'pt'],
     minArgs: 0,
     maxArgs: 1,
     callback: (username:string, message:string, args:any[], text:string, bot:any, database:any, querys:any) => {
-
-        let d: number | string , 
-            h: number | string , 
-            m: number | string;
-
-        const dhms = (time: number | string) => {
-
-            if (typeof time === 'string') time = parseInt(time);
-
-            (d = Math.floor(time / (1000 * 60 * 60 * 24))),
-            (h = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))),
-            (m = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
-            return `${d} Days(s) ${h} hours ${m} minutes.`;
-        };
-
 
         const queryPlaytime = (user:string) => {
 

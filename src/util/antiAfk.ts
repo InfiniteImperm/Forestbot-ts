@@ -1,5 +1,6 @@
-export default function antiafk(bot) {
-    console.log("anti afk started...");
+import { Info } from '../index.js';
+export default function antiafk(bot:any) {
+    Info("anti afk started...");
     let moveinterval:number = 2; 
     let maxrandom:number = 5; 
     let lasttime:number = -1;

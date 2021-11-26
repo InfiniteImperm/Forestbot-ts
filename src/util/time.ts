@@ -12,7 +12,23 @@ const dateTime = () => {
     return date.format(t, p) + " at " + date.format(t, "hh:mmA [CDT]");
 }
 
+const dhms = (time: number | string) => {
+
+    if (typeof time === 'string') time = parseInt(time);
+    
+    let d: number | string, 
+        h: number | string, 
+        m: number | string;
+
+    (d = Math.floor(time / (1000 * 60 * 60 * 24))),
+    (h = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))),
+    (m = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
+    return `${d} Days(s) ${h} hours ${m} minutes.`;
+};
+
+
 export {
     monthYear,
-    dateTime
+    dateTime,
+    dhms
 };
