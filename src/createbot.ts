@@ -1,8 +1,8 @@
 import { createBot } from 'mineflayer';
+import { Fail, client } from './index.js';
 import embed from './util/embed.js';
-import { client } from './index.js';
 import sleep from './util/sleep.js';
-import { Fail } from './index.js';
+
 
 export default function startBot(HOST:string, USER:string, PASS:string, VERSION:string, PORT:number) {
 
@@ -111,9 +111,13 @@ export default function startBot(HOST:string, USER:string, PASS:string, VERSION:
                         const userID = interaction.member.user.id;
                         const whiteList:string[] = ['741648653327925280','703044116019281963'];
 
+                        /**
+                         * If the user does not have access to use the buttons.
+                         */
                         if (!whiteList.includes(userID)) return interaction.deferUpdate();
+
                         if (interaction.customId === 'Reconnect') {
-                            await interaction.update({embeds: [{description:"Attempting to restart..."}], components:[]});
+                            await interaction.update({embeds: [{color: '#5cb85c', description:"Attempting to restart..."}], components:[]});
                             await sleep(1200);
                             return process.exit(0);
                         };
@@ -124,10 +128,8 @@ export default function startBot(HOST:string, USER:string, PASS:string, VERSION:
                              * End process in 15 minutes,
                              * let pm2 restart the process.
                              */
-                            await interaction.update({embeds:[{description:"Attempting to rejoin in 15 minutes."}], components:[]});
-
-
-
+                            await interaction.update({embeds:[{color: '#5cb85c', description:"Attempting to rejoin in 15 minutes."}], components:[]});
+                            
                             setTimeout(() => { process.exit(0) }, 900000);
 
                         };
@@ -135,18 +137,10 @@ export default function startBot(HOST:string, USER:string, PASS:string, VERSION:
                     })
                     
                 }
-                catch {
-                    return;
+                catch(error) {
+                    return console.error(error);
                 }
-
                 
-                /**
-                * If the bot cannot login we will
-                * hangout in the promise
-                * until manually restarded.
-                */
-
-
             }
 
         }
