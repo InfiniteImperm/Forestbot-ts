@@ -4,7 +4,7 @@ export default {
     commands: ['quote', 'q'],
     minArgs: 0,
     maxArgs: 1,
-    callback: (username:string, message:string, args:any[], text:any, bot:any, database:any, querys:any) => {
+    callback: (username:string, message:string, args:any[], text:string, bot:any, database:any, querys:any) => {
 
         const queryQuote = (user:string) => {
 

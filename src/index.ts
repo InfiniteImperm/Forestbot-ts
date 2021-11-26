@@ -144,7 +144,9 @@ function loadChannels() {
                                eventDir, 
                                bot_config, 
                                database, 
-                               querys);Success("Events active.");
+                               querys);
+            
+            ;Success("Events active.");
 
             /**
              * Loading commands.
