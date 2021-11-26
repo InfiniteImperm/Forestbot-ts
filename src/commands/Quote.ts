@@ -1,3 +1,5 @@
+import { RowDataPacketQuote } from "../../Types";
+
 export default {
     commands: ['quote', 'q'],
     minArgs: 0,
@@ -6,11 +8,9 @@ export default {
 
         const queryQuote = (user:string) => {
 
-            database.query(querys.quote, [user], async (err:any, results:any) => {
+            database.query(querys.quote, [user], async (err:any, results:Array<RowDataPacketQuote>) => {
 
                 if (err || !results.length) return bot.whisper(username, `${user} has sent no messages, or their message was to short to be quoted.`);
-
-
                 if (user === username) return bot.whisper(username,`${results[0].message}`);
                 if (user !== username) return bot.chat(`[${user}]: ${results[0].message}`);
 

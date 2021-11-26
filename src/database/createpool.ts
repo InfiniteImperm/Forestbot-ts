@@ -11,7 +11,7 @@ export default async function connect(HOST: string, USER: string, PASS: string, 
             database: DATABASE
         });
 
-        database.getConnection((error:any) => {
+        database.getConnection((error: unknown) => {
 
             if (error) {
                 resolve(false)

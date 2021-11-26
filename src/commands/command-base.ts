@@ -1,4 +1,5 @@
-export default function _RegisterCommands(commandModules:any, bot:any, database:any, querys:any) {
+import { bot , database , querys } from '../index.js'; 
+export default function _RegisterCommands(commandModules:any) {
 
     let {
         commands,
@@ -13,7 +14,7 @@ export default function _RegisterCommands(commandModules:any, bot:any, database:
     const prefix:string = "!";
     const cooldown = new Set();
 
-    bot.on("chat:chat", async (content:any) => {
+    bot.on("chat:chat", async (content:string[]) => {
 
         const username:string = content[0][0];
         const message:string  = content[0][1];

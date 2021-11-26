@@ -27,13 +27,14 @@ export default function startBot(HOST:string, USER:string, PASS:string, VERSION:
             });
 
 
-            const checkLogin = new Promise(async resolve=>{        
+            const checkLogin = new Promise(async resolve => {        
                 
                 /**
                  * If the mineflayer bot does not login within 20 seconds we are 
                  * going to exit.
                  */
-                const timeOut = setTimeout(async ()=>{
+                const timeOut: ReturnType<typeof setTimeout> = setTimeout(async ()=>{
+
                     Fail('Mineflayer bot could not connect... going to idle.');
                     resolve(false);
 
@@ -108,7 +109,7 @@ export default function startBot(HOST:string, USER:string, PASS:string, VERSION:
                          */
                         if (!interaction.isButton()) return;
 
-                        const userID = interaction.member.user.id;
+                        const userID:string = interaction.member.user.id;
                         const whiteList:string[] = ['741648653327925280','703044116019281963'];
 
                         /**
@@ -134,14 +135,15 @@ export default function startBot(HOST:string, USER:string, PASS:string, VERSION:
 
                         };
 
-                    })
-                    
+                    });
+
                 }
+
                 catch(error) {
                     return console.error(error);
-                }
+                };
                 
-            }
+            };
 
         }
 

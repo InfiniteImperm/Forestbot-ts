@@ -1,6 +1,5 @@
 import 'dotenv/config';
 import { readFile } from 'fs/promises';
-import { allowedNodeEnvironmentFlags } from 'process';
 export default function Check() {
     return new Promise(async (resolve, reject) => {
 

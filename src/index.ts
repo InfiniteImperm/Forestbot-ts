@@ -10,8 +10,9 @@ import { Client, Intents } from 'discord.js';
 import playtime from './functions/TrackPlaytime.js';
 
 
-let bot:any;
-let database:any = false;
+export let bot: any;
+export let database:any = false;
+export let querys:any;
 
 export const Success = (text: string) => console.log('\x1b[32m%s\x1b[0m',`${text}`);
 export const Fail = (text: string) => console.error('\x1b[31m%s\x1b[0m', `${text}`);
@@ -19,14 +20,16 @@ export const Fail = (text: string) => console.error('\x1b[31m%s\x1b[0m', `${text
 export let channels: string[] = [];
 export const client = new Client({intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES]});
 
-
+import { 
+    RowDataPacketLiveChat
+} from '../Types';
 
 function loadChannels() {
     if(!database) return;
-    database.query(`SELECT * FROM livechats`, (err: any, res: any) => {
+    database.query(`SELECT * FROM livechats`, (err: unknown, res: Array<RowDataPacketLiveChat>) => {
         if (err) return Fail("Error loading livechat channels."), console.error(err);
         channels = [];
-        res.forEach((element:any) => {
+        res.forEach((element) => {
             channels.indexOf(element.channelID) === -1 || null 
                     ? channels.push(element.channelID)
                     : 0;
@@ -48,15 +51,21 @@ function loadChannels() {
          */
         const env_options:any = await Check();
         if (env_options) Success("Checks where a success.");
+        
         const bot_config:any = env_options.bot_config;
-        const querys:any = env_options.querys;
+        querys = env_options.querys;
 
 
         /**
          * Creating connection the database.
          */
         if (env_options.USE_DATABASE) {
-            database = await connect(env_options.DATABASE_HOST, env_options.DATABASE_USER, env_options.DATABASE_PASS, env_options.DATABASE);
+            
+            database = await connect(env_options.DATABASE_HOST,
+                                     env_options.DATABASE_USER,
+                                     env_options.DATABASE_PASS,
+                                     env_options.DATABASE);
+
             if (database) Success("Connected to database successfully.");
             if (!database) Fail("Database connection was NOT successful.");
         };
@@ -64,6 +73,7 @@ function loadChannels() {
 
         /**
          * Logging in Discord Bot.
+         * and handling some discord events.
          */
         if (env_options.USE_DISCORD) {
             client.login(env_options.DISCORD_TOKEN);
@@ -105,35 +115,43 @@ function loadChannels() {
          */
         if (env_options.USE_MINEFLAYER) {
 
-            bot = await startBot(env_options.MC_HOST , env_options.MC_USER, env_options.MC_PASS, env_options.MC_VERSION, parseInt(env_options.MC_PORT));
+            bot = await startBot(env_options.MC_HOST,
+                                 env_options.MC_USER, 
+                                 env_options.MC_PASS, 
+                                 env_options.MC_VERSION, 
+                                 parseInt(env_options.MC_PORT));
 
             /**
              * Loading custom chat patterns. and tablist.
              */
             patterns(bot);
 
-
             /**
              * Loading tablist creator and playtime counter.
+             * if database connection was a success.
              */
             if (database) {
                 tab(bot,database,querys);
-                setInterval(() => { playtime(bot,database,querys) }, 60000);
+                setInterval(() => { playtime(bot) }, 60000);
             };
-
 
             /**
              * Handling Mineflayer Events.
              */
-            const eventDir = (await readdir('./dist/events')).filter(file=>file.endsWith('.js'));
-            await handleEvents(bot, eventDir, bot_config, database, querys);
-            Success("Events active.")
+            const eventDir:string[] = (await readdir('./dist/events')).filter(file=>file.endsWith('.js'));
+
+            await handleEvents(bot, 
+                               eventDir, 
+                               bot_config, 
+                               database, 
+                               querys);Success("Events active.");
 
             /**
              * Loading commands.
              */
-            await loadCommands(bot, database, querys);
-            Success("Commands loaded.")
+            await loadCommands();
+            Success("Commands loaded.");
+
 
         };
 
@@ -147,6 +165,3 @@ function loadChannels() {
 
 
 })();
-/**
- * Starting startup function
- */
