@@ -6,8 +6,7 @@ export default async function embed(text:string,color:string) {
     if (!client) return;
     const Client: any = client;
 
-    if (!channels || channels.length <= 0 || !text || !color) 
-        return console.error("Missing Embed parameters.");
+    if (!channels || channels.length <= 0 || !text || !color) return;
 
     try {
 

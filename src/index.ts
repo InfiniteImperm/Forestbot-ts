@@ -1,29 +1,24 @@
+import { RowDataPacketLiveChat } from '../Types';
+import { Client, Intents } from 'discord.js';
+import { readdir } from 'fs/promises';
+import EventEmitter from 'events';
 import Check from './Check.js';
 import startBot from './createbot.js';
-import { readdir } from 'fs/promises';
 import loadCommands from './functions/loadCommands.js';
 import handleEvents from './functions/HandleEvents.js';
 import tab from './util/tablist/tab.js';
 import patterns from './util/patterns.js';
 import connect from './database/createpool.js';
-import { Client, Intents } from 'discord.js';
 import playtime from './functions/TrackPlaytime.js';
-
 
 export let bot: any;
 export let database:any = false;
 export let querys:any;
-
 export const Info = (text: string) => console.log('\x1b[34m%s\x1b[0m',`${text}`);
 export const Success = (text: string) => console.log('\x1b[32m%s\x1b[0m',`${text}`);
 export const Fail = (text: string) => console.error('\x1b[31m%s\x1b[0m', `${text}`);
-
 export let channels: string[] = [];
 export const client = new Client({intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES]});
-
-import { 
-    RowDataPacketLiveChat
-} from '../Types';
 
 function loadChannels() {
     if(!database) return;
@@ -40,8 +35,6 @@ function loadChannels() {
     return;
 };
 
-
-
 (async () => {
     try {
 
@@ -55,7 +48,6 @@ function loadChannels() {
         
         const bot_config:any = env_options.bot_config;
         querys = env_options.querys;
-
 
         /**
          * Creating connection the database.
@@ -71,7 +63,6 @@ function loadChannels() {
             if (!database) Fail("Database connection was NOT successful.");
         };
 
-
         /**
          * Logging in Discord Bot.
          * and handling some discord events.
@@ -84,6 +75,7 @@ function loadChannels() {
                 Success("Discord bot successfully logged in.");
                 loadChannels();
                 setInterval(() => { loadChannels() }, bot_config.channelRefreshTime);
+
             });
 
             client.on("messageCreate", (message:any) => {
@@ -110,7 +102,6 @@ function loadChannels() {
 
         };
 
-        
         /**
          * Logging in the Mineflayer Bot.
          */
@@ -147,14 +138,13 @@ function loadChannels() {
                                database, 
                                querys);
             
-            ;Success("Events active.");
+            Success("Events active.");
 
             /**
              * Loading commands.
              */
             await loadCommands();
             Success("Commands loaded.");
-
 
         };
 
@@ -165,6 +155,6 @@ function loadChannels() {
         throw new Error(error);
 
     };
-
-
+    
 })();
+EventEmitter.defaultMaxListeners = 15;

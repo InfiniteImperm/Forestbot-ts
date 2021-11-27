@@ -1,6 +1,7 @@
 /**
  * Types for database querys
  */
+
 export type RowDataPacketLiveChat = {
     guildName: string,
     guildID: string,
