@@ -33,7 +33,9 @@ function loadChannels() {
             
         });
     })
+
     return;
+
 };
 
 (async () => {
