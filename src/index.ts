@@ -157,4 +157,17 @@ function loadChannels() {
     };
     
 })();
+
+
+
+
+/**
+ * Because of the way 
+ * our command handle is 
+ * setup it will create
+ * a new bot.on('chat')
+ * event for each command.
+ * so by doing this we increase
+ * the max event listener limit.
+ */
 EventEmitter.defaultMaxListeners = 25;

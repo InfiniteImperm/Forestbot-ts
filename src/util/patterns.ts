@@ -143,6 +143,7 @@ export default function patterns(bot:any) {
   
     bot.addChatPattern(
       "pvpMessages",
+      //TODO:  player was burnt whislt fighting player
       /^([^ ]*) (?:was slain by|was killed by magic whilst trying to escape|drowned whilst trying to escape|experienced kinetic energy whilst trying to escape|was shot by|was blown up by|hit the ground too hard whilst trying to escape|was killed trying to hurt) ([^ ]*)/,
       { parse: false }
     );
