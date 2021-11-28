@@ -1,7 +1,7 @@
 import { RowDataPacketMsgcount } from "../../Types";
 
 export default {
-    commands: ['messages', 'msgcount', 'msgs'],
+    commands: ['msgcount', 'msgs'],
     minArgs: 0,
     maxArgs: 1,
     callback: (username:string, message:string, args:any[], text:string, bot:any, database:any, querys:any) => {
