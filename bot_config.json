@@ -2,7 +2,7 @@
     "welcomeMessages": true,
     "reconnectTime": 30000,
     "channelRefreshTime": 130000,
-    "viewerPort": "3002",
+    "viewerPort": "3001",
     "afk": false,
 
     "purple":"#A100E1",

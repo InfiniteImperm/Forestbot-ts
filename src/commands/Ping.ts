@@ -1,5 +1,5 @@
 export default {
-    commands: ['ping', 'p'],
+    commands: ['ping'],
     minArgs: 0,
     maxArgs: 1,
     callback: (username:string, message:string, args:string[], text:string, bot:any, database:any, querys:any) => {

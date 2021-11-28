@@ -157,4 +157,4 @@ function loadChannels() {
     };
     
 })();
-EventEmitter.defaultMaxListeners = 15;
+EventEmitter.defaultMaxListeners = 25;
