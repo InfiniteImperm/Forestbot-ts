@@ -9,7 +9,7 @@ export default {
 
         const promisedQuery = promisify(database.query).bind(database);
 
-        const _args:string = args[0];
+        const _args:string = args[0].toLowerCase();
 
         switch (_args) {
 
