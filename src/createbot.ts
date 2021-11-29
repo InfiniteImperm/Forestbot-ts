@@ -10,7 +10,13 @@ export default function startBot(HOST:string, USER:string, PASS:string, VERSION:
 
     return new Promise(async (resolve , reject) => {
 
-        if(!HOST||!USER||!PASS||!VERSION||!PORT) reject("Missing options for Mineflayer bot.");
+        if(!HOST||
+           !USER||
+           !PASS||
+           !VERSION||
+           !PORT||
+           !relayChannel) reject("Missing options for Mineflayer bot.");
+           
 
         try {
 
@@ -129,7 +135,6 @@ export default function startBot(HOST:string, USER:string, PASS:string, VERSION:
                              * let pm2 restart the process.
                              */
                             await interaction.update({embeds:[{color: '#5cb85c', description:"Attempting to rejoin in 15 minutes."}], components:[]});
-                            
                             setTimeout(() => { process.exit(0) }, 900000);
 
                         };

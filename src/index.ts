@@ -91,8 +91,6 @@ function loadChannels() {
                     if (!channels || channels.length <= 0 || !database) return;
                     if (content.includes('\n')) return;
                     channels.forEach((Channel: string) => {
-                        console.log(Channel)
-
                         if (channel.id !== Channel || !bot) return;
                         bot.chat(`${member.user.tag} » ${content}`);
                     });
