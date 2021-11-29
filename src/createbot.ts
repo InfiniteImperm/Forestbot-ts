@@ -4,7 +4,7 @@ import embed from './util/embed.js';
 import sleep from './util/sleep.js';
 
 
-export default function startBot(HOST:string, USER:string, PASS:string, VERSION:string, PORT:number) {
+export default function startBot(HOST:string, USER:string, PASS:string, VERSION:string, PORT:number, relayChannel: string) {
 
     const Client:any = client;
 
@@ -80,7 +80,7 @@ export default function startBot(HOST:string, USER:string, PASS:string, VERSION:
                     };
 
                     Client.channels.cache
-                        .get('898383935145406464')
+                        .get(relayChannel)
                         .send({embeds:[embed], components: [{
                             type:1,
                             components: [

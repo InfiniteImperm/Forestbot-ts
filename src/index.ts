@@ -90,7 +90,10 @@ function loadChannels() {
 
                     if (!channels || channels.length <= 0 || !database) return;
                     if (content.includes('\n')) return message.reply("Your message is too long.");
-                    channels.forEach((Channel:any) => {
+                    channels.forEach((Channel: string) => {
+
+                        console.log(Channel)
+
                         if (channel.id !== Channel || !bot) return;
                         bot.chat(`${member.user.tag} » ${content}`);
                     });
@@ -114,7 +117,9 @@ function loadChannels() {
                                  env_options.MC_USER, 
                                  env_options.MC_PASS, 
                                  env_options.MC_VERSION, 
-                                 parseInt(env_options.MC_PORT));
+                                 parseInt(env_options.MC_PORT),
+                                 env_options.bot_config.RelayChannel
+                                 );
 
             /**
              * Loading custom chat patterns. and tablist.
