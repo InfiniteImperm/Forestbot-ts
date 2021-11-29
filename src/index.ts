@@ -46,21 +46,21 @@ function loadChannels() {
          * config options are present.
          * also getting our main options.
          */
-        const env_options:any = await Check();
-        if (env_options) Success("Checks where a success.");
+        const _env:any = await Check();
+        if (_env) Success("Checks where a success.");
         
-        const bot_config:any = env_options.bot_config;
-        querys = env_options.querys;
+        const bot_config:any = _env.bot_config;
+        querys = _env.querys;
 
         /**
          * Creating connection the database.
          */
-        if (env_options.USE_DATABASE) {
+        if (_env.USE_DATABASE) {
             
-            database = await connect(env_options.DATABASE_HOST,
-                                     env_options.DATABASE_USER,
-                                     env_options.DATABASE_PASS,
-                                     env_options.DATABASE);
+            database = await connect(_env.DATABASE_HOST,
+                                     _env.DATABASE_USER,
+                                     _env.DATABASE_PASS,
+                                     _env.DATABASE);
 
             if (database) Success("Connected to database successfully.");
             if (!database) Fail("Database connection was NOT successful.");
@@ -70,8 +70,8 @@ function loadChannels() {
          * Logging in Discord Bot.
          * and handling some discord events.
          */
-        if (env_options.USE_DISCORD) {
-            client.login(env_options.DISCORD_TOKEN);
+        if (_env.USE_DISCORD) {
+            client.login(_env.DISCORD_TOKEN);
             
             client.once("ready", () => {
                 
@@ -108,14 +108,14 @@ function loadChannels() {
         /**
          * Logging in the Mineflayer Bot.
          */
-        if (env_options.USE_MINEFLAYER) {
+        if (_env.USE_MINEFLAYER) {
 
-            bot = await startBot(env_options.MC_HOST,
-                                 env_options.MC_USER, 
-                                 env_options.MC_PASS, 
-                                 env_options.MC_VERSION, 
-                                 parseInt(env_options.MC_PORT),
-                                 env_options.bot_config.RelayChannel
+            bot = await startBot(_env.MC_HOST,
+                                 _env.MC_USER, 
+                                 _env.MC_PASS, 
+                                 _env.MC_VERSION, 
+                                 parseInt(_env.MC_PORT),
+                                 _env.bot_config.RelayChannel
                                  );
 
             /**

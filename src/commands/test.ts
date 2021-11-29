@@ -1,8 +1,11 @@
 function hours(ms:number|string) {
     if (typeof ms === 'string') ms = parseInt(ms);
     ms = Math.round(ms);
-    const hour: number = Math.floor((ms % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    return `${hour} Hours`;
+    const minutes: number = Math.floor(ms % 3600 / 60);
+    const hour: number = Math.floor(ms / 3600);
+    if (ms < 3600) return `${minutes} minutes`;
+    if (ms >= 3600) return `${hour} hours`; 
+    else return `false`;
 }
 
 export default {
