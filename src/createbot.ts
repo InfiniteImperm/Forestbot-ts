@@ -27,8 +27,7 @@ export default function startBot(HOST:string, USER:string, PASS:string, VERSION:
             });
 
 
-            const checkLogin = new Promise(async resolve => {        
-                
+            const checkLogin = new Promise(async resolve => {         
                 /**
                  * If the mineflayer bot does not login within 20 seconds we are 
                  * going to exit.
@@ -44,7 +43,7 @@ export default function startBot(HOST:string, USER:string, PASS:string, VERSION:
                  * Checking if the mineflayer bot has
                  * logged into the Minecraft server.
                  */
-                bot.once("login", function() {
+                bot.once("login", () => {
                     clearTimeout(timeOut);
                     resolve(true)
                 });
@@ -150,7 +149,6 @@ export default function startBot(HOST:string, USER:string, PASS:string, VERSION:
         catch (error) {
             console.log(error);
             resolve(false)
-
         };
 
 

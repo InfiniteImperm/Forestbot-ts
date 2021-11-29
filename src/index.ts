@@ -89,9 +89,8 @@ function loadChannels() {
                 try {
 
                     if (!channels || channels.length <= 0 || !database) return;
-                    if (content.includes('\n')) return message.reply("Your message is too long.");
+                    if (content.includes('\n')) return;
                     channels.forEach((Channel: string) => {
-
                         console.log(Channel)
 
                         if (channel.id !== Channel || !bot) return;
