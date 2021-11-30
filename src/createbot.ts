@@ -50,6 +50,7 @@ export default function startBot(HOST:string, USER:string, PASS:string, VERSION:
                  * logged into the Minecraft server.
                  */
                 bot.once("login", () => {
+                    embed(`Joined ${HOST} successfully!`, "green")
                     clearTimeout(timeOut);
                     resolve(true)
                 });
@@ -75,7 +76,7 @@ export default function startBot(HOST:string, USER:string, PASS:string, VERSION:
              */
             if (!checked) {
 
-                embed(`The server **${HOST}** seems to be offline 🤔.`,'#ffa500')
+                embed(`The server **${HOST}** seems to be offline 🤔.`,'orange')
                 
                 try {
 

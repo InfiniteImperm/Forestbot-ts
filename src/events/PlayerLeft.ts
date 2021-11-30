@@ -5,7 +5,7 @@ export default {
     once: false,
     async execute(player:any, bot:any, bot_options:any, database:any, querys:any) {
 
-            embed(`**${player.username} left the server.**`,`${bot_options.red}`);
+            embed(`**${player.username} left the server.**`,`red`);
 
             if (!database) return;
             database.query(querys.updateLeaves, [dateTime(), player.username]);

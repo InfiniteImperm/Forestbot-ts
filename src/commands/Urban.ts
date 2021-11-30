@@ -4,7 +4,7 @@ export default {
     minArgs: 1,
     maxArgs: 10,
     expectedArgs: "<Definition>",
-    callback: (username: string, message:string, args: any[], text: string, bot: any, database: any, querys: any) => {
+    callback: (username:string, args:string[], text:string, bot:any, database:any, querys:any) => {
         ud.define(`${text}`, (error:unknown, results:any[]) => {
             if (error) return bot.whisper(username, "No results found.");
             let def:string = results[0].definition;

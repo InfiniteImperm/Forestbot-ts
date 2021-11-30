@@ -11,7 +11,7 @@ export default {
 
         if (!active) return;
 
-        embed(`${player.username} joined the server!`, `${bot_options.green}`);
+        embed(`${player.username} joined the server!`, `green`);
 
         if (!database) return;
 

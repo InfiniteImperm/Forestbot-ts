@@ -4,7 +4,7 @@ export default {
     commands: ['lastseen', 'ls', 'lastsaw', 'seen'],
     minArgs: 0,
     maxArgs: 1,
-    callback: (username:string, message:string, args:any[], text:string, bot:any, database:any, querys:any) => {
+    callback: (username:string, args:string[], text:string, bot:any, database:any, querys:any) => {
 
         const queryLastseen = (user:string) => {
 

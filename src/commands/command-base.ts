@@ -41,7 +41,7 @@ export default function _RegisterCommands(commandModules: any) {
                 };
 
 
-                return callback(username, message, args, args.join(' '), bot, database, querys);
+                return callback(username, args, args.join(' '), bot, database, querys);
 
             }
 

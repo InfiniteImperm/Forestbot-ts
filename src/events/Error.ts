@@ -9,7 +9,7 @@ export default {
         console.error(content);    
         if (errorCount > 3) {
             errorCount = 0;
-            embed(`<@703044116019281963> Check console please.`,`${bot_options.orange}`);
+            embed(`<@703044116019281963> Check console please.`,`orange`);
         }
         return errorCount++;
     }

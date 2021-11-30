@@ -4,12 +4,5 @@
     "channelRefreshTime": 130000,
     "viewerPort": "3001",
     "afk": false,
-    "RelayChannel": "898383935145406464",
-
-    "purple":"#A100E1",
-    "pink":"#ff748c",
-    "grey":"#292b2c",
-    "green":"#5cb85c",
-    "red":"#d9534f",
-    "orange":"#ffa500"
+    "RelayChannel": "898383935145406464"
 }

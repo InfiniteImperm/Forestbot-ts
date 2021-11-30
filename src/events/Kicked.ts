@@ -3,6 +3,6 @@ export default {
     name: 'kicked',
     once: false,
     async execute(content:any, SecondArg:any, bot:any, bot_options:any, database:any, querys:any) {
-        return embed(`Kicked! Reason: ${content}`,`${bot_options.orange}`);
+        return embed(`Kicked! Reason: ${content}`,`orange`);
     }
 };

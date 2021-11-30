@@ -8,7 +8,7 @@ export default {
         const username = content[0][0];
         const message = content[0][1]; 
 
-        embed(`**${username}** » ${message}`, '#282828');
+        embed(`**${username}** » ${message}`, 'grey');
 
         
 

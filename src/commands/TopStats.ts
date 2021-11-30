@@ -5,7 +5,7 @@ export default {
     minArgs: 1,
     maxArgs: 1,
     expectedArgs: "Kills | Deaths | Playtime | Joins | Leaves",
-    callback: async (username: string, message: string, args: string[], text: string, bot: any, database: any, querys: any)  => {
+    callback: async (username:string, args:string[], text:string, bot:any, database:any, querys:any) => {
 
         const promisedQuery = promisify(database.query).bind(database);
 

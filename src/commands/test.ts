@@ -12,7 +12,7 @@ export default {
     commands: ['test'],
     minArgs: 0,
     maxArgs: 1,
-    callback: (username:string, message:string, args:string[], text:string, bot:any, database:any, querys:any) => {
+    callback: (username:string, args:string[], text:string, bot:any, database:any, querys:any) => {
 
         let testquery: string = `SELECT * FROM users WHERE username = ?`;
 

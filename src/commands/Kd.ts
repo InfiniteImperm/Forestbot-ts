@@ -4,7 +4,7 @@ export default {
     commands: ['kd','kills','deaths'],
     minArgs: 0,
     maxArgs: 1,
-    callback: (username:string, message:string, args:any[], text:string, bot:any, database:any, querys:any) => {
+    callback: (username:string, args:string[], text:string, bot:any, database:any, querys:any) => {
 
         const queryKD = (user:string) => {
 

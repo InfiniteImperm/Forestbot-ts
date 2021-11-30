@@ -83,6 +83,7 @@ function loadChannels() {
 
             });
 
+            
             client.on("messageCreate", (message: any) => {
 
                 const { content, channel, author, member } = message;
