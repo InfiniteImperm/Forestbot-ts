@@ -14,12 +14,16 @@ import loginMineflayer from './createbot.js';
 import { Bot } from 'mineflayer';
 import { Client } from 'discord.js';
 
-let bot:Bot;
 
 export let channels: string[] = [];
 export let client:Client;
 
+
 (async () => {
+
+    let database:any = false;
+    let bot:Bot;
+
     const bot_config_unparsed: any = await Check.bot_config()
     const bot_config = JSON.parse(bot_config_unparsed);
 
@@ -29,15 +33,15 @@ export let client:Client;
     /**
      * Creating connection to database.
      */
-    const database = await connect(Check.database_options);
-    if (!database) return Fail("Connection to database has failed.");
+    database = await connect(Check.database_options);
+    if (!database) Fail("Connection to database has failed.");
     Success("Created connection to database successfully.")
 
     /**
      * Logging in Discord Bot.
      */
     client = await discordLogin(Check.token) as Client;
-    if (!client) return Fail("Discord bot could not connect.");
+    if (!client) Fail("Discord bot could not connect.");
     Success("Discord bot logged in successfully.");
 
 
@@ -48,7 +52,6 @@ export let client:Client;
      * Logging in Minecraft bot.
      */
     bot = await loginMineflayer(Check.bot_options as any, client, bot_config.RelayChannel) as Bot;
-    if (!bot) return Fail("Mineflayer bot did not login.");
     Success("Mineflayer bot logged in successfully.")
 
     try {
