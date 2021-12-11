@@ -1,10 +1,10 @@
 # ForestBot, a minecraft Bot to record individual player statistics.
 ForestBot is what the title says ^ , he stores each players stats into a MYSQL database, there is a Discord bot and a public Data API available.
 
-Website: https://forestbot.io
+Website: https://forestbot.io <br>
 Discord: https://discord.forestbot.io
 
-API REPO: https://github.com/febzey/api
+API REPO: https://github.com/febzey/api <br>
 https://api.forestbot.io
 
 > How to use
