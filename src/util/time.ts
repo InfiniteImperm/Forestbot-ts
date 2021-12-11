@@ -1,18 +1,18 @@
 import date from 'date-and-time';
 
-const monthYear = () => {
+export const monthYear = () => {
     const t:date = new Date();
     const p:string = date.compile("MMM DD/YY");
     return date.format(t, p);
 }
 
-const dateTime = () => {
+export const dateTime = () => {
     const t:date = new Date();
     const p:string = date.compile("MMM DD/YY");
     return date.format(t, p) + " at " + date.format(t, "hh:mmA [CDT]");
 }
 
-const dhms = (time: number | string) => {
+export const dhms = (time: number | string) => {
 
     if (typeof time === 'string') time = parseInt(time);
     
@@ -24,11 +24,4 @@ const dhms = (time: number | string) => {
     (h = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))),
     (m = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
     return `${d} Days(s) ${h} hours ${m} minutes.`;
-};
-
-
-export {
-    monthYear,
-    dateTime,
-    dhms
 };
