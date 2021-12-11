@@ -1,5 +1,4 @@
-import { bot , database , querys } from '../index.js'; 
-export default function _RegisterCommands(commandModules: any) {
+export default function _RegisterCommands(commandModules: any, database: any, querys: any, bot:any) {
 
     let {
         commands,

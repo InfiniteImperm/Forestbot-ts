@@ -1,15 +1,10 @@
 import { createPool } from 'mysql';
 
-export default async function connect(HOST: string, USER: string, PASS: string, DATABASE: string) {
+export default async function connect(options:object) {
 
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
 
-        const database = createPool({
-            host: HOST,
-            user: USER,
-            password: PASS,
-            database: DATABASE
-        });
+        const database = createPool(options);
 
         database.getConnection((error: unknown) => {
 

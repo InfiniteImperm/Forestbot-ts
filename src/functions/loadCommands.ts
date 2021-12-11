@@ -1,7 +1,8 @@
 import { readdir } from 'fs/promises';
+import { Bot } from 'mineflayer';
 import _RegisterCommands from '../commands/command-base.js';
 
-export default async function loadCommands() {
+export default async function loadCommands(database:any, querys: any, bot:Bot) {
     
     return new Promise(async (resolve,reject) => {
         try{
@@ -10,7 +11,7 @@ export default async function loadCommands() {
             for (const file of commandFiles) {
                 if (file !== 'command-base.js') {
                     const commandModules = await import(`../commands/${file}`);
-                    resolve(_RegisterCommands(commandModules));
+                    resolve(_RegisterCommands(commandModules, database, querys, bot));
                 }
 
             }

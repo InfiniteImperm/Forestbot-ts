@@ -1,6 +1,4 @@
-import { Success } from "../index.js";
 export default function patterns(bot:any) {
-  Success("patterns loaded.")
     //REGEX
     //----------------------------------------------------------------
   

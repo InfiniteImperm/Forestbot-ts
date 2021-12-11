@@ -1,4 +1,4 @@
-import { Info } from '../index.js';
+import { Info } from "./log.js";
 export default function antiafk(bot:any) {
     Info("anti afk started...");
     let moveinterval:number = 2; 

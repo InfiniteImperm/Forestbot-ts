@@ -1,6 +1,6 @@
 import { client, channels } from '../index.js';
 export default async function embed(text: string, color: string) {
-
+    
     switch (color) {
         case 'green':
             color = '#5cb85c'
@@ -35,7 +35,7 @@ export default async function embed(text: string, color: string) {
 
     try {
 
-        channels.forEach((channel) => {
+        channels.forEach(channel => {
 
             return Client.channels.cache
                 .get(channel)

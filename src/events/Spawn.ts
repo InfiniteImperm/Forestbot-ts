@@ -1,7 +1,7 @@
 import antiafk from '../util/antiAfk.js';
 import viewer from '../util/viewer.js';
 import embed from '../util/embed.js';
-import { Info } from '../index.js';
+import { Fail, Info } from '../util/log.js';
 
 export default {
     name: 'spawn',

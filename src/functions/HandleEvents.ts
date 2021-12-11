@@ -1,4 +1,7 @@
-export default async function handleEvents(bot:any, eventDir:any, bot_config:any, database:any, querys:any) {
+import { readdir } from 'fs/promises';
+import { Bot } from 'mineflayer';
+export default async function handleEvents(bot_config, bot:Bot, querys:any, database:any) {
+    const eventDir: string[] = (await readdir('./dist/events')).filter(file => file.endsWith('.js'));
 
     for (const file of eventDir) {
 
