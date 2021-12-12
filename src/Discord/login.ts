@@ -1,5 +1,5 @@
 import { Client, Intents } from 'discord.js';
-import handleEvents from './HandleEvents.js';
+import handleEvents from './handleEvents.js';
 import { readdir } from 'fs/promises';
 
 const eventDir:string[] = (await readdir('./dist/Discord/events')).filter(file => file.endsWith('.js'));
