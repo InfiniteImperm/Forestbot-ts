@@ -16,8 +16,8 @@ export default {
 
             bot.chat(`${member.user.tag} » ${content}`);
             
-        })
+        });
 
-
+        return;
     }
 };

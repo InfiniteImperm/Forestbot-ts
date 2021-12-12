@@ -15,10 +15,10 @@ if (!process.env.USE_MINEFLAYER ||
     !process.env.MC_VERSION     ||
     !process.env.MC_PORT
 ) {
-    (() => {
-        console.error("Error. Missing .env config. exiting...");
-        process.exit(1);
-    })();
+
+    console.error("Error. Missing .env config. exiting...");
+    process.exit(1);
+
 };
 
 export default {

@@ -22,9 +22,9 @@ export let bot:Bot;
 (async () => {
 
     let database:any = false;
+
     const bot_config_unparsed: any = await Check.bot_config()
     const bot_config = JSON.parse(bot_config_unparsed);
-
     const query_unparsed: any = await Check.querys();
     const querys = JSON.parse(query_unparsed);
     
@@ -33,7 +33,7 @@ export let bot:Bot;
      */
     database = await connect(Check.database_options);
     if (!database) Fail("Connection to database has failed.");
-    Success("Created connection to database successfully.")
+    else Success("Created connection to database successfully.")
 
     /**
      * Logging in Discord Bot.
@@ -42,7 +42,9 @@ export let bot:Bot;
     if (!client) Fail("Discord bot could not connect.");
     Success("Discord bot logged in successfully.");
 
-
+    /**
+     * Getting livechat channels
+     */
     channels = await loadChannels.loadChannels(database)
     setInterval(async () => { channels = await loadChannels.loadChannels(database) }, bot_config.channelRefreshTime);
     

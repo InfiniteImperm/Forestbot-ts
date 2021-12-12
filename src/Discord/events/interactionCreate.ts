@@ -29,5 +29,7 @@ export default {
             await interaction.update({ embeds: [{ color: '#5cb85c', description: "Attempting to rejoin in 15 minutes." }], components: [] });
             return setTimeout(() => { process.exit(0) }, 15 * 60000);
         }
+
+        return;
     }
 };

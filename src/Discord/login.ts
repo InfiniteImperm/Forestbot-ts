@@ -7,7 +7,7 @@ const eventDir:string[] = (await readdir('./dist/Discord/events')).filter(file =
 const discordLogin = (token: string) => {
 
     return new Promise(resolve => {
-        const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
+        const client:Client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
         try {
             client.login(token);
