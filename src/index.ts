@@ -60,25 +60,29 @@ export let client:Client;
         */
         patterns(bot);
         /**
-        * Loading events
+        * Registering events
         */
         handleEvents(bot_config, bot, querys, database);
         /**
-        * Loading commands.
+        * Registering commands.
         */
         loadCommands(database, querys, bot);
-        Success("Patterns, events, commands loaded successfully.");
+
     }
 
     catch {
         return Fail("Failed to load patterns || handleEvents || loadCommands");
     };
 
+    Success("Patterns, events, commands loaded successfully.");
 
     if (database) {
         tab(bot, database, querys);
         setInterval(() => { playtime(bot, database, querys) }, 60000);
-    }
+    };
+
+
+
 
 })();
 

@@ -5,7 +5,7 @@ Website: https://forestbot.io <br>
 Discord: https://discord.forestbot.io
 
 API REPO: https://github.com/febzey/api <br>
-https://api.forestbot.io
+API UI: https://api.forestbot.io
 
 > How to use
 1. Decent understanding of nodejs and mysql.

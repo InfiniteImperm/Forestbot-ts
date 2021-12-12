@@ -2,17 +2,17 @@ import 'dotenv/config';
 import { readFile } from 'fs/promises';
 
 if (!process.env.USE_MINEFLAYER ||
-    !process.env.USE_DATABASE ||
-    !process.env.USE_DISCORD ||
-    !process.env.MC_HOST ||
-    !process.env.MC_USER ||
-    !process.env.MC_PASS ||
-    !process.env.DATABASE ||
-    !process.env.DATABASE_HOST ||
-    !process.env.DATABASE_USER ||
-    !process.env.DATABASE_PASS ||
-    !process.env.TOKEN ||
-    !process.env.MC_VERSION ||
+    !process.env.USE_DATABASE   ||
+    !process.env.USE_DISCORD    ||
+    !process.env.MC_HOST        ||
+    !process.env.MC_USER        ||
+    !process.env.MC_PASS        ||
+    !process.env.DATABASE       ||
+    !process.env.DATABASE_HOST  ||
+    !process.env.DATABASE_USER  ||
+    !process.env.DATABASE_PASS  ||
+    !process.env.TOKEN          ||
+    !process.env.MC_VERSION     ||
     !process.env.MC_PORT
 ) {
     (() => {
