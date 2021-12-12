@@ -7,7 +7,7 @@ export default {
     async execute(message: Message, client: Client) {
         const { content, author, channel, member } = message;
 
-        if (!channels || channels.length < 1 || content.includes('\n') || author.id === client.user.id) return;
+        if (!channels || channels.length < 1 || content.includes('\n') || author.id === client.user.id || !bot) return;
 
 
         channels.forEach(Channel => {
