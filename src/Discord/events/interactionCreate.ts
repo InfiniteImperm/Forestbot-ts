@@ -1,9 +1,9 @@
-import discord from 'discord.js';
+import { Client, Interaction} from 'discord.js';
 import sleep from '../../util/sleep.js';
 export default {
     name: 'interactionCreate',
     once: false,
-    async execute(interaction: discord.Interaction, client: discord.Client) {
+    async execute(interaction: Interaction, client: Client) {
         if (!interaction.isButton()) return;
 
         const userID: string = interaction.member.user.id;

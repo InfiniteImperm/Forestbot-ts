@@ -17,13 +17,11 @@ import { Client } from 'discord.js';
 
 export let channels: string[] = [];
 export let client:Client;
-
+export let bot:Bot;
 
 (async () => {
 
     let database:any = false;
-    let bot:Bot;
-
     const bot_config_unparsed: any = await Check.bot_config()
     const bot_config = JSON.parse(bot_config_unparsed);
 
