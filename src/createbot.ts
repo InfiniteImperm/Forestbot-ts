@@ -24,14 +24,14 @@ const loginMineflayer = (options: BotOptions, client: any, Channel: string) => {
                             type: 2,
                             style: 2,
                             label: "Reconnect",
-                            custom_id: "Reconnect"
+                            /**
+                             * Setting the custom_id to the same
+                             * name as database, just so we can have
+                             * a unique id for each bot, since the database
+                             * names are unique for each bot as well.
+                             */
+                            custom_id: `${process.env.DATABASE}`
                         },
-                        {
-                            type: 2,
-                            style: 2,
-                            label: "Reconnect in 15 minutes",
-                            custom_id: "ReconnectInTime"
-                        }
                     ]
                 }]
             });
@@ -40,6 +40,7 @@ const loginMineflayer = (options: BotOptions, client: any, Channel: string) => {
 
         }, 40000);
 
+        bot.on('error', console.log);
         bot.once("login", () => {
             embed(`Joined ${options.host} successfully!`, "green")
             clearTimeout(timeOut);

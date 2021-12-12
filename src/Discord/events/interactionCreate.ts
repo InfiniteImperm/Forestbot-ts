@@ -14,21 +14,12 @@ export default {
          */
         if (!whiteList.includes(userID)) return interaction.deferUpdate();
 
-        if (interaction.customId === 'Reconnect') {
+        if (interaction.customId === `${process.env.DATABASE}`) {
             await interaction.update({ embeds: [{ color: '#5cb85c', description: "Attempting to restart..." }], components: [] });
             await sleep(1200);
             return process.exit(0);
         };
 
-        if (interaction.customId === 'ReconnectInTime') {
-
-            /**
-             * End process in 15 minutes,
-             * let pm2 restart the process.
-             */
-            await interaction.update({ embeds: [{ color: '#5cb85c', description: "Attempting to rejoin in 15 minutes." }], components: [] });
-            return setTimeout(() => { process.exit(0) }, 15 * 60000);
-        }
 
         return;
     }
