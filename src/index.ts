@@ -1,4 +1,4 @@
-
+'use strict';
 import EventEmitter from 'events';
 import Check from './Check.js';
 import loadCommands from './functions/loadCommands.js';
@@ -7,27 +7,26 @@ import tab from './util/tablist/tab.js';
 import patterns from './util/patterns.js';
 import connect from './database/createpool.js';
 import playtime from './functions/TrackPlaytime.js';
-import loadChannels from './util/loadChannels.js';
-import { Success, Fail } from './util/log.js';
 import discordLogin from './Discord/login.js';
 import loginMineflayer from './createbot.js';
+import loadChannels from './util/loadChannels.js';
+import { Success, Fail } from './util/log.js';
 import { Bot } from 'mineflayer';
 import { Client } from 'discord.js';
 
-
 export let channels: string[] = [];
-export let client:Client;
-export let bot:Bot;
+export let client: Client;
+export let bot: Bot;
 
 (async () => {
 
-    let database:any = false;
+    let database: any = false;
 
     const bot_config_unparsed: any = await Check.bot_config()
     const bot_config = JSON.parse(bot_config_unparsed);
     const query_unparsed: any = await Check.querys();
     const querys = JSON.parse(query_unparsed);
-    
+
     /**
      * Creating connection to database.
      */
@@ -47,7 +46,7 @@ export let bot:Bot;
      */
     channels = await loadChannels.loadChannels(database)
     setInterval(async () => { channels = await loadChannels.loadChannels(database) }, bot_config.channelRefreshTime);
-    
+
     /**
      * Logging in Minecraft bot.
      */
