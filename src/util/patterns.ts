@@ -115,6 +115,13 @@ export default function patterns(bot:any) {
     bot.addChatPattern("chat", /^\[Discord\] ([^ ]*) > (.*)$/, {
       parse: true,
     });
+
+    /**
+     * [Discord] Username » Message
+     */
+    bot.addChatPattern("chat", /^\[Discord\] ([^ ]*) » (.*)$/, {
+      parse: true,
+    });
   
     /**
      * [Discord] [Mod] Username > Message
