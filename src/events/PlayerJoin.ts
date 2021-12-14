@@ -34,7 +34,7 @@ export default {
                     
                         if (bot_options.welcomeMessages) {
                             bot.chat(`${player.username} joined for the first time!`);
-                            await sleep(600);
+                            await sleep(1200);
                             bot.whisper(player.username, "https://forestbot.io for command list / info.");
                         }
                         return;
