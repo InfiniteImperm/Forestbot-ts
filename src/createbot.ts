@@ -4,13 +4,16 @@ import embed from './util/embed.js';
 
 const loginMineflayer = (options: BotOptions, client: any, Channel: string) => {
     return new Promise(resolve => {
+        
+        embed(`Attempting to join ${options.host}`, 'green')
 
         const bot: Bot = createBot(options);
 
         const timeOut: ReturnType<typeof setTimeout> = setTimeout(async () => {
 
             Fail('Mineflayer bot could not connect... going to idle.');
-            embed(`The server **${options.host}** seems to be offline 🤔.`, 'orange')
+            embed(`The server **${options.host}** seems to be offline 🤔.`, 'orange');
+            
             client.channels.cache
             .get(Channel)
             .send({

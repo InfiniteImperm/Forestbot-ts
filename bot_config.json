@@ -4,5 +4,6 @@
     "channelRefreshTime": 130000,
     "viewerPort": "3001",
     "afk": false,
+    "ads": true,
     "RelayChannel": "898383935145406464"
 }

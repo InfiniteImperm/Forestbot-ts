@@ -1,5 +1,6 @@
 import { dateTime } from '../util/time.js';
 import embed from '../util/embed.js';
+import sleep from '../util/sleep.js';
 
 let active = false;
 setTimeout(() => active = true , 9009);
@@ -15,9 +16,9 @@ export default {
 
         if (!database) return;
 
-        async function saveUser(player:any) {
+        const saveUser  = async (player:any) => {
                
-                database.query(querys.checkUser, [player.uuid], (error:any, results:any) => {
+                database.query(querys.checkUser, [player.uuid], async (error:unknown, results:any[]) => {
                     
                     if (error) return console.log(error);
 
@@ -31,7 +32,11 @@ export default {
                             player.uuid
                         ]);
                     
-                        if (bot_options.welcomeMessages) bot.chat(`${player.username} joined for the first time!`);
+                        if (bot_options.welcomeMessages) {
+                            bot.chat(`${player.username} joined for the first time!`);
+                            await sleep(600);
+                            bot.whisper(player.username, "https://forestbot.io for command list / info.");
+                        }
                         return;
                     }
 

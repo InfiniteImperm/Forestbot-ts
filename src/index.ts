@@ -13,6 +13,8 @@ import loadChannels from './util/loadChannels.js';
 import { Success, Fail } from './util/log.js';
 import { Bot } from 'mineflayer';
 import { Client } from 'discord.js';
+import { readFile } from 'fs/promises';
+import advertise from './util/adverts.js';
 
 export let channels: string[] = [];
 export let client: Client;
@@ -80,8 +82,13 @@ export let bot: Bot;
         setInterval(() => { playtime(bot, database, querys) }, 60000);
     };
 
+    let adsArray:string[] = [];
 
-
+    if (bot_config.ads) {
+        const Adverts = await readFile('adverts.txt');
+        adsArray = Adverts.toString().split('\n');
+        setInterval(async ()=>{bot.chat(advertise(adsArray))}, 45 * 60000);
+    }
 
 })();
 
