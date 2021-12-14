@@ -10,11 +10,11 @@ import playtime from './functions/TrackPlaytime.js';
 import discordLogin from './Discord/login.js';
 import loginMineflayer from './createbot.js';
 import loadChannels from './util/loadChannels.js';
+import advertise from './util/adverts.js';
 import { Success, Fail } from './util/log.js';
 import { Bot } from 'mineflayer';
 import { Client } from 'discord.js';
 import { readFile } from 'fs/promises';
-import advertise from './util/adverts.js';
 
 export let channels: string[] = [];
 export let client: Client;
