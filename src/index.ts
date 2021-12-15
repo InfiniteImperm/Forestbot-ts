@@ -12,18 +12,22 @@ import loginMineflayer from './createbot.js';
 import loadChannels from './util/loadChannels.js';
 import advertise from './util/adverts.js';
 import { Success, Fail } from './util/log.js';
+import TPS from './tps/getTps.js';
 import { Bot } from 'mineflayer';
 import { Client } from 'discord.js';
 import { readFile } from 'fs/promises';
+import logTps from './tps/logTps.js';
+import logPlayerCount from './tps/logPlayerCount.js';
 
 export let channels: string[] = [];
 export let client: Client;
 export let bot: Bot;
 
+export let array_tps: [number, number][] = [];
+
 (async () => {
 
     let database: any = false;
-
     const bot_config_unparsed: any = await Check.bot_config()
     const bot_config = JSON.parse(bot_config_unparsed);
     const query_unparsed: any = await Check.querys();
@@ -56,6 +60,12 @@ export let bot: Bot;
     Success("Mineflayer bot logged in successfully.")
 
     try {
+
+        /**
+         * Loading TPS Plugin.
+         */
+        bot.loadPlugin(TPS);
+
         /**
         * Loading patterns. 
         */
@@ -69,26 +79,41 @@ export let bot: Bot;
         */
         loadCommands(database, querys, bot);
 
-    }
-
-    catch {
+        Success("Patterns, events, commands loaded successfully.");
+    } catch {
         return Fail("Failed to load patterns || handleEvents || loadCommands");
     };
 
-    Success("Patterns, events, commands loaded successfully.");
-
+    /**
+     * If database connection is successful
+     * we will create a tablist, and log players playtime.
+     */
     if (database) {
         tab(bot, database, querys);
-        setInterval(() => { playtime(bot, database, querys) }, 60000);
+        setInterval(async () => { playtime(bot, database, querys) }, 60000);
+
+        /**
+         * Logging Tps usage ever 5 minutes.
+         */
+        setInterval(async () => { logTps(database, bot) }, 5 * 60000);
+
+        /**
+         * Logging player count every 25 minutes.
+         */
+        setInterval(async () => { logPlayerCount(database, bot) }, 25 * 60000);
     };
 
-    let adsArray:string[] = [];
-
+    /**
+     * Bot will send random message
+     * every x minutes.
+     */
     if (bot_config.ads) {
-        const Adverts = await readFile('adverts.txt');
-        adsArray = Adverts.toString().split('\n');
-        setInterval(async ()=>{bot.chat(advertise(adsArray))}, 45 * 60000);
-    }
+        const Adverts: Buffer = await readFile('adverts.txt');
+        setInterval(async () => { bot.chat(advertise(Adverts)) }, bot_config.adTime * 60000);
+    };
+
+
+
 
 })();
 

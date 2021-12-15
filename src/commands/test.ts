@@ -5,7 +5,7 @@ function hours(ms:number|string) {
     const hour: number = Math.floor(ms / 3600);
     if (ms < 3600) return `${minutes} minutes`;
     if (ms >= 3600) return `${hour} hours`; 
-    else return `false`;
+    else return false;
 }
 
 export default {
