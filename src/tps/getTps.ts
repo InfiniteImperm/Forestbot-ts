@@ -15,7 +15,7 @@ const TPS = (bot: any) => {
                 calcTps.shift()
             }
 
-            if (process.uptime() / 60 > 1) {
+            if (process.uptime() / 60 > 2) {
                 __Tps.push([calcTps.filter(tps => tps === 20).length, Date.now()]);
             }
             
