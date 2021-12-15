@@ -116,5 +116,4 @@ export let array_tps: [number, number][] = [];
 
 
 })();
-
 EventEmitter.defaultMaxListeners = 25;
