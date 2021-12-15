@@ -3,6 +3,8 @@
     "saveMessage": "INSERT INTO messages (name,message,date) VALUES (?,?,?)",
     "checkUser": "SELECT username,uuid FROM users WHERE uuid=?",
     "insertUser": "INSERT INTO users (username,kills,deaths,joindate,uuid) VALUES (?,?,?,?,?)",
+    "saveFact": "INSERT INTO facts (username,fact,date) VALUES (?,?,?)",
+    "searchFact": "SELECT * FROM facts WHERE id = ?",
     "UpdateExistingUser": "UPDATE users SET username=? WHERE username=?",
     "updateLeaves": "UPDATE users SET leaves = leaves + 1 , lastseen=? WHERE username=?",
     "updateJoins": "UPDATE users SET joins = joins + 1, lastseen=? WHERE username=?",
