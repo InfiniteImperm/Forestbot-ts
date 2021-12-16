@@ -7,5 +7,7 @@
     "ads": true,
     "adTime": 45,
     "logTps": false,
+    "loadCommands": true,
+    "handleMcEvents": true,
     "RelayChannel": "898383935145406464"
 }

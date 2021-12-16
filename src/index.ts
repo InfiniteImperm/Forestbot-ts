@@ -18,10 +18,12 @@ import { Client } from 'discord.js';
 import { readFile } from 'fs/promises';
 import logTps from './tps/logTps.js';
 import logPlayerCount from './tps/logPlayerCount.js';
+
 export let array_tps: [number, number][] = [];
 export let channels: string[] = [];
 export let client: Client;
 export let bot: Bot;
+
 (async () => {
     let database: any = false;
     const bot_config_unparsed: any = await Check.bot_config()
@@ -62,13 +64,13 @@ export let bot: Bot;
         /**
         * Registering events
         */
-        handleEvents(bot_config, bot, querys, database);
+        if (bot_config.handleMcEvents) handleEvents(bot_config, bot, querys, database);
         /**
         * Registering commands.
         */
-        loadCommands(database, querys, bot);
+        if (bot_config.loadCommands) loadCommands(database, querys, bot);
 
-        Success("Patterns, events, commands loaded successfully.");
+        Success("Loaded.");
     } catch {
         return Fail("Failed to load patterns || handleEvents || loadCommands");
     };
