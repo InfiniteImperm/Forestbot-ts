@@ -5,6 +5,8 @@
     "insertUser": "INSERT INTO users (username,kills,deaths,joindate,uuid) VALUES (?,?,?,?,?)",
     "saveFact": "INSERT INTO facts (username,fact,date) VALUES (?,?,?)",
     "searchFact": "SELECT * FROM facts WHERE id = ?",
+    "totalFact": "SELECT MAX(id) as total from facts",
+    "randomFact": "SELECT * FROM facts ORDER BY RAND() LIMIT 1",
     "UpdateExistingUser": "UPDATE users SET username=? WHERE username=?",
     "updateLeaves": "UPDATE users SET leaves = leaves + 1 , lastseen=? WHERE username=?",
     "updateJoins": "UPDATE users SET joins = joins + 1, lastseen=? WHERE username=?",
