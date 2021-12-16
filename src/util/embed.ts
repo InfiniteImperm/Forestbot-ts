@@ -1,6 +1,7 @@
 import { client, channels } from '../index.js';
 export default async function embed(text: string, color: string) {
-    
+    const Client: any = client;
+    if (!client || !channels || channels.length <= 0 || !text || !color) return;
     switch (color) {
         case 'green':
             color = '#5cb85c'
@@ -25,30 +26,15 @@ export default async function embed(text: string, color: string) {
         case 'orange':
             color = '#ffa500'
             break;
-
     }
-
-    if (!client) return;
-    const Client: any = client;
-
-    if (!channels || channels.length <= 0 || !text || !color) return;
-
     try {
-
         channels.forEach(channel => {
-
             return Client.channels.cache
                 .get(channel)
                 .send({ embeds: [{ color: color, description: text }] });
-
         });
-
     }
-
     catch {
-
         return console.error('\x1b[31m%s\x1b[0m', "Error while trying to send embed.");
-
     };
-
 };

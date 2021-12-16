@@ -1,7 +1,5 @@
 import embed from '../util/embed.js';
-
 let errorCount:number = 0;
-
 export default {
     name: 'error',
     once: false,

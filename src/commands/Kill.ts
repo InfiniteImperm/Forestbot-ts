@@ -28,8 +28,6 @@ export default {
                 `I Hope You Remember This....`,
                 `you're a real piece of shit I hope you know that.`
             ];
-
-
         let r = deathQuotes[Math.floor(Math.random() * deathQuotes.length)];
         bot.chat(r);
         await sleep(1000);

@@ -1,4 +1,3 @@
 import { mineflayer } from 'prismarine-viewer';
-export default async function viewer(bot:any, port:string | number) {
-    return mineflayer(bot, { port: port });
-}
+const viewer = (bot: any, port: string | number) => mineflayer(bot, { port: port});
+export default viewer;

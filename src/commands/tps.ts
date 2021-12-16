@@ -1,5 +1,4 @@
 import { __Tps } from "../tps/getTps.js";
-
 export default {
     commands: ['tps'],
     minArgs: 0,
@@ -11,6 +10,5 @@ export default {
         const TPS = min().toString().split(",");
         let Tps = parseInt(TPS[0]) !== 20 ? `| Lowest Recorded: ${TPS[0]} at ${new Date(parseInt(TPS[1])).toLocaleTimeString("en-US")} CDT` : " ";
         return bot.whisper(username, `TPS: ${bot.getTps()} ${Tps}`);
-
     }
 } 

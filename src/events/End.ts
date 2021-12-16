@@ -8,7 +8,6 @@ export default {
         const uptime = Math.round(process.uptime() * 1000);
         embed(`Bot has been running for: ${dhms(uptime)}`, `orange`)
         embed(`**Attempting to rejoin in 15 seconds...**`, `orange`);
-
         await sleep(bot_options.reconnectTime);
         return process.exit();
     }

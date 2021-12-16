@@ -17,7 +17,6 @@ export default function antiafk(bot:any) {
                 moving = 0;
                 lasttime = bot.time.age;
             } else {
-
                 let yaw = Math.random() * pi - (0.5 * pi);
                 let pitch = Math.random() * pi - (0.5 * pi);
                 bot.look(yaw, pitch, false);

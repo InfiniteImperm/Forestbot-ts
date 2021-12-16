@@ -21,7 +21,6 @@ export default {
                 }
             }
         }
-        
         if (args.length <= 0) checkPing(username)
         if (args.length === 1) checkPing(args.toString());
         return;

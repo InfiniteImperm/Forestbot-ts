@@ -18,12 +18,10 @@ import { Client } from 'discord.js';
 import { readFile } from 'fs/promises';
 import logTps from './tps/logTps.js';
 import logPlayerCount from './tps/logPlayerCount.js';
-
 export let array_tps: [number, number][] = [];
 export let channels: string[] = [];
 export let client: Client;
 export let bot: Bot;
-
 (async () => {
     let database: any = false;
     const bot_config_unparsed: any = await Check.bot_config()
@@ -52,7 +50,6 @@ export let bot: Bot;
      */
     bot = await loginMineflayer(Check.bot_options as any, client, bot_config.RelayChannel) as Bot;
     Success("Mineflayer bot logged in successfully.")
-
     try {
         /**
          * Loading TPS Plugin.
@@ -75,7 +72,6 @@ export let bot: Bot;
     } catch {
         return Fail("Failed to load patterns || handleEvents || loadCommands");
     };
-
     /**
      * If database connection is successful
      * we will create a tablist, and log players playtime.
@@ -95,7 +91,6 @@ export let bot: Bot;
             setInterval(async () => { logPlayerCount(database, bot) }, 25 * 60000);
         }
     };
-
     /**
      * Bot will send random message
      * every x minutes.
@@ -104,6 +99,5 @@ export let bot: Bot;
         const Adverts: Buffer = await readFile('adverts.txt');
         setInterval(async () => { bot.chat(advertise(Adverts)) }, bot_config.adTime * 60000);
     };
-
 })();
 EventEmitter.defaultMaxListeners = 25;

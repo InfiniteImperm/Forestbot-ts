@@ -3,7 +3,6 @@ export default {
     minArgs: 0,
     maxArgs: 20,
     callback: (username: string, args: string[], text: string, bot: any, database: any, querys: any) => {
-
         if (args[0] === 'add') {
             if (args.length < 2) return bot.whisper(username, "When adding a fact please also enter in a fact");
             args.shift();
@@ -30,39 +29,25 @@ export default {
         }
 
         else if (args[0] === 'total') { 
-
             database.query(querys.totalFact, (err:unknown,res:any[]) => {
-
                 if (err) {
                     bot.whisper(username, "Could not get total number of facts, sorry.");
                     return console.error(err);
                 }
-
-
                 return bot.whisper(username, `Total facts: ${res[0].total}`)
-
             })
 
         }
 
         else if (args[0] === 'random') { 
-
             database.query(querys.randomFact, (err:unknown, res:any[]) => {
-
                 if (err) {
                     bot.whisper(username, "Could not get a random Fact, sorry.");
                     return console.error(err);
                 }
-
                 return bot.chat(`[fact ${res[0].id}]: ${res[0].fact}`);
-
             })
-
-
         }
-
-
-
 
         else {
             return bot.whisper(username, "Adding fact: !fact add <fact> | Searching fact:  !fact <ID> | Random: !fact random | Total: !fact total");

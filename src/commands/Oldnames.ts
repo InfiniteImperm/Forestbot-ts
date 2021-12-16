@@ -11,7 +11,6 @@ export default {
                 if (!res[1]) return bot.whisper(username, "This user has never changed their name.");
                 const mapped = res.map((element:any) => `${element.name}`).join(", ");
                 return bot.chat(`Oldnames for [${args.toString()}]: ${mapped}`);
-
             });
         });
         return;

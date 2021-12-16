@@ -1,19 +1,13 @@
 import { createBot, Bot, BotOptions} from 'mineflayer';
 import { Fail } from './util/log.js';
 import embed from './util/embed.js';
-
 const loginMineflayer = (options: BotOptions, client: any, Channel: string) => {
     return new Promise(resolve => {
-        
         embed(`Attempting to join ${options.host}`, 'green')
-
         const bot: Bot = createBot(options);
-
         const timeOut: ReturnType<typeof setTimeout> = setTimeout(async () => {
-
             Fail('Mineflayer bot could not connect... going to idle.');
             embed(`The server **${options.host}** seems to be offline 🤔.`, 'orange');
-            
             client.channels.cache
             .get(Channel)
             .send({
@@ -38,20 +32,13 @@ const loginMineflayer = (options: BotOptions, client: any, Channel: string) => {
                     ]
                 }]
             });
-
-
-
         }, 40000);
-
         bot.on('error', console.log);
         bot.once("login", () => {
             embed(`Joined ${options.host} successfully!`, "green")
             clearTimeout(timeOut);
             resolve(bot);
         });
-
-
     });
 };
-
 export default loginMineflayer;
