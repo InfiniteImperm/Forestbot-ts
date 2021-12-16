@@ -65,7 +65,7 @@ export default {
 
 
         else {
-            return bot.whisper(username, "Adding fact: !fact add <fact> | Searching fact:  !fact <ID>")
+            return bot.whisper(username, "Adding fact: !fact add <fact> | Searching fact:  !fact <ID> | Random: !fact random | Total: !fact total");
         }
         return;
     }

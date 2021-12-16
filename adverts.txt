@@ -10,3 +10,5 @@ See when a player was last seen with !seen
 Find me with !coords
 See the old names of a user with !oldnames
 Check your ping or another players with !ping
+Add a fact with '!fact add <your fact>', 'Search a fact with !fact <ID>'
+Get a random fact with '!fact random', Get total fact count with '!fact total'

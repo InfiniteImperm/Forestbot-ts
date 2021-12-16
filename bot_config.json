@@ -6,5 +6,6 @@
     "afk": false,
     "ads": true,
     "adTime": 45,
+    "logTps": false,
     "RelayChannel": "898383935145406464"
 }
